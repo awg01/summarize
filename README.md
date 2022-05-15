@@ -28,6 +28,9 @@ Go to the project directory
   cd summarize
 ```
 
+Download glove.6B.100d.txt(347.12 MB) file from https://www.kaggle.com/datasets/rtatman/glove-global-vectors-for-word-representation and add inside project folder. Same folder where manage.py file resides.
+
+
 Install dependencies
 
 ```bash
