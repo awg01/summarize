@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form class="container" style="padding-top:10px;" action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for entry in form %}
+  <div>
+    {{ entry.label_tag }}
+  </div>
+  <div>
+    {{entry}}
+  </div>
+  {% endfor %}
+  <div class="form-group" id="signup-button">
+    <br>
+      <button class="btn btn-dark">Summarize file</button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script type="text/javascript">
+  function sendEmail(){
+console.log("clicked send mail button")
+    var file_contents = document.getElementById('file_contents').value;
+    var file_summary = document.getElementById('file_summary').value;
+    var length = document.getElementById('length').value;
+    var email = document.getElementById('email').value;
+
+    console.log(file_contents);
+    console.log(file_summary);
+    console.log(length);
+    console.log(email);
+
+
+    var mailUrl = "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to="+email+"&su=summary%20of%20file"+"&body=file%20contents%20"+file_contents+"%0A%0Afile%20summary%20"+file_summary+"%0A%0Alength=%20"+length;
+    window.open(mailUrl, '_blank');
+
+    // <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=akashgudadhe112@gmail.com&su=summary%20of%20url%&body=body" target="_blank">Send to Mail</a>
+  }
+</script>
+<form class="container" style="padding-top:10px;" action="" method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col">
+      <textarea class="form-control" id="file_contents" name="file_contents" placeholder="file_contents" value="" rows="15">{{file_contents}}</textarea>
+      <br>
+      <textarea class="form-control" id="file_summary" name="file_summary" placeholder="file_summary" value="" rows="15">{{file_summary}}</textarea>
+      <br>
+      <input type="text" class="form-control" id="length" name="length" value="{{length}}" placeholder="length">
+    </div>
+    <br>
+
+      <input type="hidden" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="{{user.email}}">
+      <br>
+
+      <button type="button" class="btn btn-dark py-3" onclick="sendEmail()" name="Send to email">Send Email</button>
+
+  </div>
+  <br>
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  function callDictionary(l) {
+    var word = document.getElementById('word').value;
+
+    url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + word
+    const response = fetch(url)
+      .then(response => response.json())
+      .then((data) => {
+        return data[0]
+      });
+
+    const getResponse = () => {
+      response.then((a) => {
+        //https://jsonpathfinder.com/ It'll generate the JS syntax for the path to the element inside given json
+        console.log(a.meanings[0].definitions[0].definition);
+        const value = a.meanings[0].definitions[0].definition;
+        document.getElementById("display_meaning").value = value;
+      });
+    };
+
+    getResponse();
+
+    document.getElementById("display_meaning").value = a;
+  }
+</script>
+
+<form class="container" style="padding-top:10px;">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col col-md-9">
+      <input type="text" class="form-control" id="word" name="word" placeholder="Enter word to search">
+    </div>
+    <div class="col col-md-3">
+      <button type="button" onclick="callDictionary()" class="btn btn-dark">Find meaning</button>
+    </div>
+  </div>
+  <br>
+  <input type="text" disabled class="form-control py-3" id="display_meaning" placeholder="">
+
+</form>
+{% endblock %}

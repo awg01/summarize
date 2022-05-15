@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script type="text/javascript">
+  function sendEmail(){
+    var url = document.getElementById('url').value;
+    var email = document.getElementById('email').value;
+    var url_summary = document.getElementById('url_summary').value;
+
+    console.log(url);
+    console.log(email);
+    console.log(url_summary);
+
+    var mailUrl = "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to="+email+"&su=summary%20of%20"+url+"&body="+url_summary;
+    window.open(mailUrl, '_blank');
+
+    // <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=akashgudadhe112@gmail.com&su=summary%20of%20url%&body=body" target="_blank">Send to Mail</a>
+  }
+</script>
+<form class="container" style="padding-top:10px;" action="" method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col col-md-9">
+      <input type="text" class="form-control" id="url" name="url" value="{{url}}" placeholder="Enter URL to summarize">
+      <br>
+      <input type="text" class="form-control" id="length" name="length" value="{{length}}" placeholder="Enter length of summary(sentences)">
+    </div>
+    <div class="col col-md-3">
+      <button type="submit" class="btn btn-dark mb-3">Summarize URL</button>
+    </div>
+  </div>
+  <br>
+  <textarea class="form-control" id="url_summary" name="url_summary" placeholder="summary of url" value="" rows="15">{{summary}}</textarea>
+  <input type="hidden" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="{{user.email}}">
+  <button type="button" class="btn btn-dark mb-3 mt-3" onclick="sendEmail()" name="Send to email">Send Email</button>
+
+</form>
+{% endblock %}

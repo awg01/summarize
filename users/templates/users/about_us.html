@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container fancy-bg">
+  <div class="row">
+    <h1 class="fancy-title">Automatic Text Summarization using Text Rank Algorithm</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <h3>Algorithm</h3>
+    </div>
+    <div class="col-md-10">
+      <h3>Text Rank Algorithm</h3>
+    </div>
+  </div>
+  <div class="row">
+    <h4>Features</h4>
+    <ul>
+      <li><h6>Paragraph Summarizer</h6></li>
+      <li><h6>Document Summarizer</h6></li>
+      <li><h6>URL Summarizer</h6></li>
+      <li><h6>Portfolio Summarizer</h6></li>
+      <li><h6>Dictionary</h6></li>
+    </ul>
+  </div>
+  <div class="row">
+    <h4>Research gap</h4>
+    <ul>
+      <li><h6>Single and document summarizer in one application itself</h6></li>
+      <li><h6>Dictonary in order to grasp the best knowledge from summary</h6></li>
+      <li><h6>Dataset named as glove.6B.100d is a word embedding's used for the vector representation of words </h6></li>
+      <li><h6>User can compare the two summary of same topic but different input text and learn the best from it in very less time</h6></li>
+    </ul>
+  </div>
+
+
+</div>
+{% endblock %}

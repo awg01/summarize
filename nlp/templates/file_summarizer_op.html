@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script type="text/javascript">
+  function sendEmail(){
+    var url = document.getElementById('url').value;
+    var email = document.getElementById('email').value;
+    var url_summary = document.getElementById('url_summary').value;
+
+    console.log(url);
+    console.log(email);
+    console.log(url_summary);
+
+    var mailUrl = "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to="+email+"&su=summary%20of%20"+url+"&body="+url_summary;
+    window.open(mailUrl, '_blank');
+
+    // <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=akashgudadhe112@gmail.com&su=summary%20of%20url%&body=body" target="_blank">Send to Mail</a>
+  }
+</script>
+<form class="container" style="padding-top:10px;" action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for entry in form %}
+  <div>
+    {{ entry.label_tag }}
+  </div>
+  <div>
+    {{entry}}
+  </div>
+  {% endfor %}
+</form>
+{% endblock %}

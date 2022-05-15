@@ -1,0 +1,71 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  {% if not user.is_authenticated %}
+  <h3>Please <a href="{% url 'users:login' %}">login</a> to access this services.</h3>
+  {% endif %}
+    <div class="row">
+      <div class="col-md-4">
+          <div class="card p-3 bg-light">
+              <div class="d-flex flex-row mb-3"><img src="https://img.icons8.com/external-flat-icons-inmotus-design/344/external-paragraph-internet-messenger-flat-icons-inmotus-design.png" width="70">
+                  <div class="d-flex flex-column ml-2" style="margin:20px;">Paragraph Summarizer</div>
+              </div>
+              <h6>Copy and Paste the text and get the summary.</h6>
+              {% if user.is_authenticated %}
+              <div class="d-flex justify-content-between install mt-3"><a href="{% url 'nlp:paragraph' %}"><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></a></div>
+              {% endif %}
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card p-3 bg-light">
+              <div class="d-flex flex-row mb-3"><img src="https://img.icons8.com/clouds/344/file.png" width="70">
+                  <div class="d-flex flex-column ml-2" style="margin:20px;">Document Summarizer</div>
+              </div>
+              <h6>Upload the file and get the summary of desired length of sentences.</h6>
+              {% if user.is_authenticated %}
+              <div class="d-flex justify-content-between install mt-3"><a href="{% url 'nlp:filesummarizer' %}"><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></a></div>
+              {% endif %}
+          </div>
+      </div>
+        <div class="col-md-4">
+            <div class="card p-3 bg-light">
+                <div class="d-flex flex-row mb-3"><img src="https://img.icons8.com/external-flaticons-flat-flat-icons/344/external-url-internet-marketing-service-flaticons-flat-flat-icons-2.png" width="70">
+                    <div class="d-flex flex-column ml-2" style="margin:20px;">URL Summarizer</div>
+                </div>
+                <h6>Paste the Web page URL,click on genarte summary and get summary.</h6>
+                {% if user.is_authenticated %}
+                <div class="d-flex justify-content-between install mt-3"><a href="{% url 'nlp:urlsummarizer' %}"><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></a></div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6 py-3">
+            <div class="card p-3 bg-light">
+                <div class="d-flex flex-row mb-3"><img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/344/external-services-car-wash-flaticons-lineal-color-flat-icons.png" width="70">
+                    <div class="d-flex flex-column ml-2" style="margin:20px;">Portfolio</div>
+                </div>
+                <h6>Summary of latest technologies of 2022 and read its original article.</h6>
+                {% if user.is_authenticated %}
+                <div class="d-flex justify-content-between install mt-3"><a href="{% url 'nlp:urlshowcase' %}"><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></a></div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6 py-3">
+            <div class="card p-3 bg-light">
+                <div class="d-flex flex-row mb-3"><img src="https://img.icons8.com/color/344/dictionary.png" width="70">
+                     <div class="d-flex flex-column ml-2" style="margin:20px;">Dictionary API</div>
+                </div>
+                <h6>To understand meaning of every word in summary.</h6>
+                {% if user.is_authenticated %}
+                <div class="d-flex justify-content-between install mt-3"><a href="{% url 'users:dictionary' %}"><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></a></div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock content %}

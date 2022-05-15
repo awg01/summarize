@@ -1,0 +1,91 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form class="container" style="padding-top:10px;" action="" method="POST">
+  {% csrf_token %}
+  <div class="row summary-row">
+
+    <div class="col-sm summary-col">
+      <!-- col start -->
+      <form action="" method="POST" id="formOne">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="formOne">
+        {{ form1.non_field_errors }}
+        {{ form1.source.errors }}
+        {{ form1.source }}
+        <!-- <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Form1</legend>
+          {{ form1|crispy }}
+        </fieldset> -->
+        <table class="">
+
+          <tr>
+            <th>{{ form1.paragraph.label_tag }}</th>
+            <td>
+              {{ form1.paragraph.errors }}
+              {{ form1.paragraph }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>{{ form1.length.label_tag }}</th>
+            <td>
+              {{ form1.length.errors }}
+              {{ form1.length }}
+            </td>
+          </tr>
+
+        </table>
+        <div class="form-group" id="signup-button">
+          <button class="btn ">Generate summary</button>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="display_summary" name="display_summary" placeholder="summary of paragraph1" value="" rows="15">{{form1.summary.value}}</textarea>
+        </div>
+      </form>
+    </div><!-- col end -->
+
+    <div class="col-sm summary-col">
+      <!-- col start -->
+      <form action="" method="POST" id="formTwo">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="formTwo">
+        {{ form1.non_field_errors }}
+        {{ form1.source.errors }}
+        {{ form1.source }}
+        <table class="">
+
+          <tr>
+            <th>{{ form2.paragraph.label_tag }}</th>
+            <td>
+              {{ form2.paragraph.errors }}
+              {{ form2.paragraph }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>{{ form2.length.label_tag }}</th>
+            <td>
+              {{ form2.length.errors }}
+              {{ form2.length }}
+            </td>
+          </tr>
+
+        </table>
+        <!-- <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Form2</legend>
+          {{ form2|crispy }}
+        </fieldset> -->
+        <div class="form-group" id="signup-button">
+          <button class="btn ">Generate summary</button>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="display_summary" name="display_summary" placeholder="summary of paragraph2" value="" rows="15">{{form2.summary.value}}</textarea>
+        </div>
+      </form>
+    </div><!-- col end -->
+
+  </div>
+
+</form>
+{% endblock %}
